@@ -1,9 +1,10 @@
 public class Checker {
 
-  private boolean kinged, alive;
+  private boolean kinged, alive, red;
   private int x,y;
 
-  public Checker(int x, int y) {
+  public Checker(boolean red, int x, int y) {
+    this.red = red;
     this.x = x;
     this.y = y;
     kinged = false;
@@ -26,6 +27,10 @@ public class Checker {
     return alive;
   }
 
+  public boolean isRed() {
+    return red;
+  }
+
   public void setX(int x) {
     this.x = x;
   }
@@ -45,5 +50,9 @@ public class Checker {
 
   public void setAlive(boolean alive) {
     this.alive = alive;
+  }
+
+  public void setRed(boolean red) {
+    this.red = red;
   }
 }
