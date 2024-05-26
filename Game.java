@@ -6,11 +6,11 @@ public class Game {
   private Board board;
   private Scanner scanner;
   private StringBuilder display;
-  private boolean redGoing, playing;
+  private boolean playing;
 
   public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_BLACK = "\u001B[30m";
-  public static final String ANSI_RED = "\u001B[31m";
+  public static final String ANSI_BLACK = "\u001B[90m";
+  public static final String ANSI_RED = "\u001B[91m";
   public static final String ANSI_GREEN = "\u001B[32m";
   public static final String ANSI_YELLOW = "\u001B[33m";
   public static final String ANSI_BLUE = "\u001B[34m";
@@ -25,7 +25,7 @@ public class Game {
   public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
   public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
   public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-  public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+  public static final String ANSI_WHITE_BACKGROUND = "\u001B[107m";
 
   public static final String RESET_CURSOR = "\033[H";
   public static final String CLEAR_PAST_CURSOR = "\033[2J";
@@ -35,7 +35,6 @@ public class Game {
     board = new Board();
     scanner = new Scanner(System.in);
     display = new StringBuilder();
-    redGoing = true;
     playing = true;
   }
 
@@ -49,8 +48,10 @@ public class Game {
     while(playing) {
       displayGame();
       playerMove();
+      board.kingEligiblePieces();
       displayGame();
       botMove();
+      board.kingEligiblePieces();
     }
   }
 
@@ -67,20 +68,20 @@ public class Game {
           if(j % 2 == 0) {
             display.append(ANSI_WHITE_BACKGROUND + "   " + ANSI_RESET);
           } else {
-            display.append(ANSI_RESET + "   ");
+            display.append(ANSI_BLACK_BACKGROUND + "   " + ANSI_RESET);
           }
         } else if (board.findPiece(j-i+1, i+1).isRed()) {
           if(board.findPiece(j-i+1, i+1).isKing()) {
             if(j % 2 == 0) {
               display.append(ANSI_WHITE_BACKGROUND + ANSI_RED + " 0 " + ANSI_RESET);
             } else {
-              display.append(ANSI_RED + " 0 " + ANSI_RESET);
+              display.append(ANSI_RED + ANSI_BLACK_BACKGROUND + " 0 " + ANSI_RESET);
             }
           } else {
             if(j % 2 == 0) {
               display.append(ANSI_WHITE_BACKGROUND + ANSI_RED + " o " + ANSI_RESET);
             } else {
-              display.append(ANSI_RED + " o " + ANSI_RESET);
+              display.append(ANSI_RED + ANSI_BLACK_BACKGROUND + " o " + ANSI_RESET);
             }
           }
         } else {
@@ -88,13 +89,13 @@ public class Game {
             if(j % 2 == 0) {
               display.append(ANSI_WHITE_BACKGROUND + ANSI_BLACK + " 0 " + ANSI_RESET);
             } else {
-              display.append(ANSI_BLACK + " 0 " + ANSI_RESET);
+              display.append(ANSI_BLACK + ANSI_BLACK_BACKGROUND + " 0 " + ANSI_RESET);
             }
           } else {
             if(j % 2 == 0) {
               display.append(ANSI_WHITE_BACKGROUND + ANSI_BLACK + " o " + ANSI_RESET);
             } else {
-              display.append(ANSI_BLACK + " o " + ANSI_RESET);
+              display.append(ANSI_BLACK + ANSI_BLACK_BACKGROUND + " o " + ANSI_RESET);
             }
           }
         }
