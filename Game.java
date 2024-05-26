@@ -111,6 +111,11 @@ public class Game {
     System.out.println("Make your move: ");
     String move = scanner.nextLine();
 
+    if(move.equals("exit")) {
+      playing = false;
+      return;
+    }
+
     int pieceX = Integer.parseInt(move.substring(1, 2));
     int pieceY;
 
@@ -186,6 +191,11 @@ public class Game {
 
     System.out.println("Make your move: ");
     String move = scanner.nextLine();
+
+    if(move.equals("exit")) {
+      playing = false;
+      return;
+    }
 
     int pieceX = Integer.parseInt(move.substring(1, 2));
     int pieceY;
