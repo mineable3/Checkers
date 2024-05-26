@@ -1,22 +1,17 @@
 public class Checker {
 
   private boolean kinged, alive, red;
-  private int x,y;
+  private int location;
 
-  public Checker(boolean red, int x, int y) {
+  public Checker(boolean red, int location) {
     this.red = red;
-    this.x = x;
-    this.y = y;
+    this.location = location;
     kinged = false;
     alive = true;
   }
 
-  public int getX() {
-    return x;
-  }
-
-  public int getY() {
-    return y;
+  public int getLocation() {
+    return location;
   }
 
   public boolean isKing() {
@@ -31,17 +26,8 @@ public class Checker {
     return red;
   }
 
-  public void setX(int x) {
-    this.x = x;
-  }
-
-  public void setY(int y) {
-    this.y = y;
-  }
-
-  public void setCoords(int x, int y) {
-    this.x = x;
-    this.y = y;
+  public void setLocation(int location) {
+    this.location = location;
   }
 
   public void setKinged(boolean kinged) {
