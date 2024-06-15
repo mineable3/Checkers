@@ -147,6 +147,10 @@ public class Board {
         return true;
       } else if(kinged && (end == start - 4 || end == start - 3)) {
         return true;
+      } else if((end == start + 9 && findPiece(start + 5) != null) || (end == start + 7 && findPiece(start + 4) != null)) {
+        return true;
+      } else if(kinged && (end == start - 9 && findPiece(start - 4) != null) || (end == start - 7 && findPiece(start - 3) != null)) {
+        return true;
       }
     }
 
@@ -170,6 +174,10 @@ public class Board {
         return true;
       } else if(kinged && (end == start - 4 || end == start - 5)) {
         return true;
+      } else if((end == start + 7 && findPiece(start + 3) != null) || (end == start + 9 && findPiece(start + 5) != null)) {
+        return true;
+      } else if(kinged && (end == start - 9 && findPiece(start - 5) != null) || (end == start - 7 && findPiece(start - 4) != null)) {
+        return true;
       }
     }
 
@@ -179,7 +187,7 @@ public class Board {
   public boolean checkMoveIsLegal(int start, int end) {
     Checker source = findPiece(start);
 
-    if(findPiece(end) != null || findPiece(start) == null) {
+    if(findPiece(end) != null || source == null) {
       return false;
     }
 
