@@ -63,7 +63,7 @@ public class Game {
     for(int i = 0; i < 8; i++) {
       display.append(letters.charAt(i) + "|");
       for (int j = i; j < 8 + i; j++) {
-        if(board.findPiece(locationFromDisplay(i, j)) == null) {
+        if(board.findPiece(locationFromDisplay(i, j)) == null || !board.findPiece(locationFromDisplay(i, j)).isAlive()) {
           if(j % 2 == 0) {
             display.append(ANSI_WHITE_BACKGROUND + "   " + ANSI_RESET);
           } else {

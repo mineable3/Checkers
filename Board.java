@@ -34,7 +34,63 @@ public class Board {
     pieces[23] = new Checker(true, 32);
   }
 
-  private void capturePiece(Checker c) {
+  private void capturePiece(int start, int end) {
+    Checker c = null;
+
+    if(start == 1 ||
+        start == 2 ||
+        start == 3 ||
+        start == 4 ||
+        start == 9 ||
+        start == 10 ||
+        start == 11 ||
+        start == 12 ||
+        start == 17 ||
+        start == 18 ||
+        start == 19 ||
+        start == 20 ||
+        start == 25 ||
+        start == 26 ||
+        start == 27 ||
+        start == 28) {
+      if(end - start == -7) {
+        c = findPiece(start - 3);
+      } else if(end - start == -9) {
+        c = findPiece(start - 4);
+      } else if(end - start == 7) {
+        c = findPiece(start + 4);
+      } else if(end - start == 9) {
+        c = findPiece(start + 5);
+      }
+    }
+
+    if(start == 5 ||
+        start == 6 ||
+        start == 7 ||
+        start == 8 ||
+        start == 13 ||
+        start == 14 ||
+        start == 15 ||
+        start == 16 ||
+        start == 21 ||
+        start == 22 ||
+        start == 23 ||
+        start == 24 ||
+        start == 29 ||
+        start == 30 ||
+        start == 31 ||
+        start == 32) {
+      if(end - start == -7) {
+        c = findPiece(start - 4);
+      } else if(end - start == -9) {
+        c = findPiece(start - 5);
+      } else if(end - start == 9) {
+        c = findPiece(start + 4);
+      } else if(end - start == 7) {
+        c = findPiece(start + 3);
+      }
+    }
+
     c.setAlive(false);
     c.setLocation(-1);
   }
@@ -42,7 +98,7 @@ public class Board {
   public void movePiece(int start, int end) {
     if(checkMoveIsLegal(start, end)) {
       if(Math.abs(start - end) > 6) {
-        // capturePiece(something);
+        capturePiece(start, end);
       }
       findPiece(start).setLocation(end);
     } else {
@@ -174,7 +230,7 @@ public class Board {
         return true;
       } else if(kinged && (end == start - 4 || end == start - 5)) {
         return true;
-      } else if((end == start + 7 && findPiece(start + 3) != null) || (end == start + 9 && findPiece(start + 5) != null)) {
+      } else if((end == start + 7 && findPiece(start + 3) != null) || (end == start + 9 && findPiece(start + 4) != null)) {
         return true;
       } else if(kinged && (end == start - 9 && findPiece(start - 5) != null) || (end == start - 7 && findPiece(start - 4) != null)) {
         return true;
